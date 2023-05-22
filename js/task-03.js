@@ -14,13 +14,20 @@ const images = [
 ];
 
 const ulEl = document.querySelector('.gallery');
-const fragment = document. createDocumentFragment()
-images.forEach((image) => {
-  const lieEl = document.createElement('li');
-  const imgEl = document.createElement('img');
-  imgEl.src = image.url;
-  imgEl.alt = image.alt;
-  lieEl.appendChild(imgEl);
-  fragment.appendChild(lieEl);
-});
-ulEl.appendChild(fragment)
+const imagesEl = images
+  .map(
+    (image) => `
+      <li>
+        <img src="${image.url}" alt="${image.alt}">
+      </li>
+    `
+  )
+  .join('');
+
+ulEl.insertAdjacentHTML('beforeend', imagesEl);
+ulEl.style.display = 'flex';
+ulEl.style.listStyle = 'none';
+
+
+
+
